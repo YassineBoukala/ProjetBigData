@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container  mt-4">
+		<div class="card" >
+		
+
+<div class="card-body">
+		
+		
+		<!-- <form name="form2" onsubmit='return verif_champ(document.form2.keydate.value);' method="get" th:action="@{ListProjection}">
+		<div class="form-group">
+		<label class="mr-2">la date</label>
+		<input type="text" name="keydate" th:value="${keydate}"/>
+		<button class="btn btn-success ml-2" >Chercher par date</button>
+		</div>
+		</form> -->
+			<table class=table>
+				<tr>
+					<th>Location</th>
+					<th>Condition</th>
+					<th>Temperature</th>
+					<th>Upload </th>
+					
+				</tr>
+				<tr><td>
+				<form name="form" method="get" th:action="@{Weathersp}">
+				<input type="text" name="location">
+		<button class="btn btn-success ml-2" th:href="@{Weathersp}" >Show by location</button>
+		</form>
+		</td>
+				<td>
+						<form name="form4" method="get" th:action="@{weatherCo}">
+		<input type="text"  name="condition" th:value="${condition}"/>
+		<button class="btn btn-success ml-2" >Show by condition</button>
+		</form>
+		</td>
+				
+		<td>
+						<form name="form2" method="get" th:action="@{weathers}">
+		<input type="number" step="0.1" name="temperature" th:value="${temperature}"/>
+		<button class="btn btn-success ml-2" >Show by temperature</button>
+		</form>
+		</td>
+			<td>
+		<form method="post" th:action="@{upload-csv-file}" enctype="multipart/form-data" >
+		<input id="fileSelect" type="file" name="file" th:value="${file}" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" /> 
+		<input type="submit" value="Submit" />
+		</form>	
+		</td>
+		
+	
+				</tr>
+				</table>
+					
+   		</div> 
+</div>
+
+
+
+
+
+
+
+
+
+        <div>
+
+            <!--display covids list-->
+            <table class="table table-striped" th:if="${status}">
+                
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">location</th>
+                    <th scope="col">temperature</th>
+                    <th scope="col">conditions</th>
+                    
+                </tr>
+                
+               
+                <tr th:each="w:${weather}">
+                    <td th:text="${w.id}"></td>
+                    <td th:text="${w.location}"></td>
+                    <td th:text="${w.temperature}"></td>
+                    <td th:text="${w.conditions}"></td>
+                    
+                </tr>
+               
+            </table>
+        </div>
+    
+</div>
+</body>
+</html>
